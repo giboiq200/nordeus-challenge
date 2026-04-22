@@ -1,0 +1,233 @@
+.pb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  background: #080810;
+  font-family: Georgia, serif;
+  color: #eaeaea;
+}
+
+.pb-card {
+  width: 100%;
+  max-width: 480px;
+  background: #0d0d1e;
+  border: 1px solid #2a2040;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.pb-header {
+  background: #0a0818;
+  border-bottom: 1px solid #2a2040;
+  padding: 28px 24px;
+  text-align: center;
+  position: relative;
+}
+
+.pb-header-icon {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.pb-header h2 {
+  font-size: 2rem;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+.pb-header.win h2     { color: #f4c542; }
+.pb-header.lose h2    { color: #e05252; }
+.pb-header.victory h2 { color: #f4c542; }
+
+.pb-header p {
+  font-size: 0.82rem;
+  color: #6a5a8a;
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
+
+/* Corner decorations */
+.pb-corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+}
+.pb-corner.tl { top: 12px; left: 12px; border-top: 1px solid #3a2a5a; border-left: 1px solid #3a2a5a; }
+.pb-corner.tr { top: 12px; right: 12px; border-top: 1px solid #3a2a5a; border-right: 1px solid #3a2a5a; }
+
+/* ── Section ── */
+.pb-section {
+  padding: 16px 24px;
+  border-bottom: 1px solid #1a1830;
+}
+
+.pb-section-title {
+  font-size: 0.7rem;
+  color: #4a3a6a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* ── XP ── */
+.pb-xp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.pb-xp-level {
+  color: #7b3ff7;
+  font-weight: bold;
+}
+
+.pb-xp-bar {
+  background: #1a1830;
+  border-radius: 10px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.pb-xp-fill {
+  height: 100%;
+  background: #7b3ff7;
+  border-radius: 10px;
+  transition: width 0.8s ease;
+}
+
+.pb-xp-sub {
+  text-align: right;
+  font-size: 0.7rem;
+  color: #3a2a5a;
+  margin-top: 4px;
+}
+
+/* ── Learned Move ── */
+.pb-move {
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pb-move--physical { background: #1e0f00; border: 2px solid #c87941; }
+.pb-move--magic    { background: #12001e; border: 2px solid #9b41c8; }
+.pb-move--none     { background: #001220; border: 2px solid #4182c8; }
+
+.pb-move-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pb-move-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #eaeaea;
+}
+
+.pb-move-type {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #9b41c8;
+}
+
+.pb-move--physical .pb-move-type { color: #c87941; }
+.pb-move--none     .pb-move-type { color: #4182c8; }
+
+.pb-move-desc {
+  font-size: 0.8rem;
+  color: #888;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.pb-move-hint {
+  font-size: 0.7rem;
+  color: #3a2a5a;
+  font-style: italic;
+  margin-top: 6px;
+}
+
+/* ── Stats ── */
+.pb-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.pb-stat {
+  background: #0a0818;
+  border: 1px solid #1a1830;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pb-stat-label {
+  font-size: 0.78rem;
+  color: #555;
+}
+
+.pb-stat-val {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #eaeaea;
+}
+
+/* ── Buttons ── */
+.pb-buttons {
+  padding: 16px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pb-btn-primary {
+  background: #f4c542;
+  color: #1a0a2e;
+  border: none;
+  border-radius: 8px;
+  padding: 13px;
+  font-family: Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 1px;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.pb-btn-primary:hover {
+  background: #ffd966;
+  transform: translateY(-1px);
+}
+
+.pb-btn-secondary {
+  background: transparent;
+  color: #6a5a8a;
+  border: 1px solid #2a2040;
+  border-radius: 8px;
+  padding: 11px;
+  font-family: Georgia, serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.pb-btn-secondary:hover {
+  color: #9a8aba;
+  border-color: #4a3a6a;
+}

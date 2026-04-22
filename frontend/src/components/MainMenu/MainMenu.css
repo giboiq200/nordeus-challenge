@@ -1,0 +1,198 @@
+.main-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #080810;
+}
+
+/* ── Background layers ── */
+.main-menu__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.main-menu__stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 8%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 22% 15%, #fff 0%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 47% 6%, #fff 0%, transparent 100%),
+    radial-gradient(1.8px 1.8px at 63% 12%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 5%, #fff 0%, transparent 100%),
+    radial-gradient(1.3px 1.3px at 91% 18%, #fff 0%, transparent 100%),
+    radial-gradient(0.8px 0.8px at 15% 28%, #fff 0%, transparent 100%),
+    radial-gradient(1.1px 1.1px at 35% 22%, #fff 0%, transparent 100%),
+    radial-gradient(1.4px 1.4px at 55% 30%, #fff 0%, transparent 100%),
+    radial-gradient(0.9px 0.9px at 85% 35%, #fff 0%, transparent 100%);
+  opacity: 0.7;
+}
+
+.main-menu__mountains {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background:
+    linear-gradient(to top, #111128 0%, transparent 100%);
+  clip-path: polygon(
+    0% 100%, 0% 60%, 8% 40%, 16% 55%, 24% 30%, 34% 50%,
+    42% 25%, 52% 42%, 60% 18%, 70% 38%, 78% 22%, 88% 40%,
+    96% 28%, 100% 45%, 100% 100%
+  );
+}
+
+/* ── Content ── */
+.main-menu__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  z-index: 1;
+  padding: 40px;
+}
+
+/* ── Title ── */
+.main-menu__logo-area {
+  position: relative;
+  text-align: center;
+  padding: 20px 60px;
+}
+
+.main-menu__title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 3.8rem;
+  font-weight: bold;
+  color: #f4c542;
+  letter-spacing: 6px;
+  margin: 0;
+  text-shadow: 0 0 40px rgba(244, 197, 66, 0.3);
+}
+
+.main-menu__subtitle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #d4a830;
+  letter-spacing: 10px;
+  margin: 0;
+}
+
+.main-menu__divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px auto;
+  width: 280px;
+}
+
+.main-menu__divider-line {
+  flex: 1;
+  height: 1px;
+  background: #7b3ff7;
+  opacity: 0.6;
+}
+
+.main-menu__divider-gem {
+  width: 8px;
+  height: 8px;
+  background: #7b3ff7;
+  border-radius: 50%;
+}
+
+.main-menu__tagline {
+  font-family: Georgia, serif;
+  font-size: 0.85rem;
+  color: #6a5a8a;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* ── Corner decorations ── */
+.main-menu__corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+}
+
+.main-menu__corner.tl {
+  top: 0; left: 0;
+  border-top: 1.5px solid #3a2a5a;
+  border-left: 1.5px solid #3a2a5a;
+}
+.main-menu__corner.tr {
+  top: 0; right: 0;
+  border-top: 1.5px solid #3a2a5a;
+  border-right: 1.5px solid #3a2a5a;
+}
+.main-menu__corner.bl {
+  bottom: 10px; left: 0;
+  border-bottom: 1.5px solid #3a2a5a;
+  border-left: 1.5px solid #3a2a5a;
+}
+.main-menu__corner.br {
+  bottom: 10px; right: 0;
+  border-bottom: 1.5px solid #3a2a5a;
+  border-right: 1.5px solid #3a2a5a;
+}
+
+/* ── Sword ── */
+.main-menu__sword {
+  margin: -10px 0;
+  filter: drop-shadow(0 0 20px rgba(123, 63, 247, 0.4));
+}
+
+/* ── Buttons ── */
+.main-menu__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.main-menu__btn-start {
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1a0a2e;
+  background: #f4c542;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 50px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 240px;
+}
+
+.main-menu__btn-start:hover {
+  background: #ffd966;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(244, 197, 66, 0.3);
+}
+
+.main-menu__btn-exit {
+  font-family: Georgia, serif;
+  font-size: 0.9rem;
+  color: #6a5a8a;
+  background: transparent;
+  border: 1px solid #3a2a5a;
+  border-radius: 6px;
+  padding: 10px 50px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 240px;
+}
+
+.main-menu__btn-exit:hover {
+  color: #9a8aba;
+  border-color: #6a5a9a;
+}
