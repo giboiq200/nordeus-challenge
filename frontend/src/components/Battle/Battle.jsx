@@ -155,9 +155,9 @@ function Battle() {
       log = `${atk.name} used ${move.name}! Defense +30% for ${move.buff_duration} turns.`;
       triggerAnim(attackerIsHero ? setHeroAnim : setMonsterAnim, "buff");
     } else if (move.effect === "buff_magic") {
-      if (move.id === "dark_pact") atk.current_hp = Math.max(1, atk.current_hp - 15);
+      if (move.id === "dark_pact") atk.current_hp = Math.max(1, atk.current_hp - 5);
       atk.active_effects = [...atk.active_effects, { stat: "magic", modifier: 1.3, turns_remaining: move.buff_duration || 2 }];
-      log = `${atk.name} used ${move.name}! Magic +30% for ${move.buff_duration} turns.`;
+      log = `${atk.name} used ${move.name}! Sacrificed 5 HP to boost Magic +30% for ${move.buff_duration} turns.`;
       triggerAnim(attackerIsHero ? setHeroAnim : setMonsterAnim, "buff");
     } else if (move.effect === "debuff_attack") {
       def.active_effects = [...def.active_effects, { stat: "attack", modifier: 0.7, turns_remaining: move.buff_duration || 2 }];

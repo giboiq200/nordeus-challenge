@@ -2,10 +2,10 @@ import { create } from "zustand";
 import { fetchRunConfig } from "../services/api";
 
 const HERO_BASE_STATS = {
-  health: 120,
-  attack: 18,
-  defense: 12,
-  magic: 12,
+  health: 100,
+  attack: 15,
+  defense: 10,
+  magic: 10,
 };
 
 const XP_TO_LEVEL_UP = 150;

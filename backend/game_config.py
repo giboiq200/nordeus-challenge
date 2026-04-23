@@ -1,8 +1,5 @@
 from models import Move, MonsterConfig, MoveType, EffectType
 
-# ============================================================
-# SVE MOVE DEFINICIJE
-# ============================================================
 
 # --- KNIGHT (default) ---
 SLASH = Move(id="slash", name="Slash", type=MoveType.PHYSICAL, effect=EffectType.DAMAGE,
@@ -71,27 +68,27 @@ HEX_SHIELD = Move(id="hex_shield", name="Hex Shield", type=MoveType.NONE, effect
 MONSTERS = [
     MonsterConfig(
         id="goblin_warrior", name="Goblin Warrior", sprite="goblin_warrior.png",
-        health=60, attack=12, defense=5, magic=3,
+        health=75, attack=12, defense=5, magic=3,
         moves=[RUSTY_BLADE, DIRTY_KICK, FRENZY, HEADBUTT]
     ),
     MonsterConfig(
         id="giant_spider", name="Giant Spider", sprite="giant_spider.png",
-        health=75, attack=14, defense=8, magic=3,
+        health=85, attack=14, defense=8, magic=3,
         moves=[BITE, WEB_THROW, POUNCE, SKITTER]
     ),
     MonsterConfig(
         id="goblin_mage", name="Goblin Mage", sprite="goblin_mage.png",
-        health=65, attack=6, defense=5, magic=16,
+        health=95, attack=10, defense=5, magic=16,
         moves=[FIREBOLT, ARCANE_SURGE, MANA_DRAIN, HEX_SHIELD]
     ),
     MonsterConfig(
         id="witch", name="Witch", sprite="witch.png",
-        health=85, attack=7, defense=6, magic=20,
+        health=105, attack=7, defense=6, magic=20,
         moves=[SHADOW_BOLT, DRAIN_LIFE, CURSE, DARK_PACT]
     ),
     MonsterConfig(
         id="dragon", name="Dragon", sprite="dragon.png",
-        health=120, attack=20, defense=15, magic=22,
+        health=125, attack=20, defense=15, magic=22,
         moves=[FLAME_BREATH, CLAW_SWIPE, INTIMIDATE, DRAGON_SCALES]
     ),
 ]

@@ -27,8 +27,8 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  padding: 24px 40px 16px;
-  min-height: 280px;
+  padding: 60px 40px 24px;
+  min-height: 320px;
   background: linear-gradient(to bottom, transparent 60%, rgba(8,8,16,0.95) 100%);
 }
 
