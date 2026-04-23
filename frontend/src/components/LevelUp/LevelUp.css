@@ -1,0 +1,148 @@
+.lu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  font-family: Georgia, serif;
+  color: #eaeaea;
+  padding: 24px;
+}
+
+.lu-card {
+  background: #0d0d1e;
+  border: 1px solid #2a2040;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 420px;
+}
+
+.lu-header {
+  background: #0a0818;
+  border-bottom: 1px solid #2a2040;
+  padding: 20px 24px;
+  text-align: center;
+}
+
+.lu-header-icon {
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.lu-header h2 {
+  font-size: 1.6rem;
+  color: #f4c542;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+.lu-header p {
+  font-size: 0.8rem;
+  color: #6a5a8a;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.lu-section {
+  padding: 16px 24px;
+  border-bottom: 1px solid #1a1830;
+}
+
+.lu-section-title {
+  font-size: 0.7rem;
+  color: #4a3a6a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.lu-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lu-choice {
+  background: #0a0818;
+  border: 2px solid #2a2040;
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.2s ease;
+}
+
+.lu-choice:hover {
+  border-color: #f4c542;
+  background: #1a1408;
+  transform: translateX(4px);
+}
+
+.lu-choice.selected {
+  border-color: #f4c542;
+  background: #1a1408;
+}
+
+.lu-choice-icon {
+  font-size: 1.6rem;
+  width: 36px;
+  text-align: center;
+}
+
+.lu-choice-info {
+  flex: 1;
+}
+
+.lu-choice-name {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #eaeaea;
+}
+
+.lu-choice-desc {
+  font-size: 0.78rem;
+  color: #666;
+  margin-top: 2px;
+}
+
+.lu-choice-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #4caf50;
+  white-space: nowrap;
+}
+
+.lu-buttons {
+  padding: 16px 24px 20px;
+}
+
+.lu-btn {
+  background: #f4c542;
+  color: #1a0a2e;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 1px;
+  width: 100%;
+  opacity: 0.4;
+  transition: all 0.2s ease;
+}
+
+.lu-btn.active {
+  opacity: 1;
+}
+
+.lu-btn.active:hover {
+  background: #ffd966;
+  transform: translateY(-1px);
+}

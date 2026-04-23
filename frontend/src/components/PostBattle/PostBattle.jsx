@@ -1,17 +1,33 @@
+import { useState, useEffect } from "react";
 import { useGameStore } from "../../store/gameStore";
+import LevelUp from "../LevelUp/LevelUp";
 import "./PostBattle.css";
 
 function PostBattle() {
   const {
     battleResult, lastLearnedMove, hero,
     currentMonsterIndex, runConfig,
-    goToScreen, enterBattle
+    goToScreen, enterBattle,
+    pendingLevelUp, pendingLevelUpLevel, applyLevelUpBonus
   } = useGameStore();
+
+  const [showLevelUp, setShowLevelUp] = useState(false);
+
+  useEffect(() => {
+    if (pendingLevelUp && !isRunComplete) {
+      setTimeout(() => setShowLevelUp(true), 600);
+    }
+  }, [pendingLevelUp]);
+
+  function handleLevelUpConfirm(bonus) {
+    applyLevelUpBonus(bonus);
+    setShowLevelUp(false);
+  }
 
   const isRunComplete = currentMonsterIndex >= (runConfig?.monsters?.length || 5);
   const defeatedMonster = battleResult === "lose"
-  ? runConfig?.monsters[currentMonsterIndex]
-  : runConfig?.monsters[currentMonsterIndex - 1];
+    ? runConfig?.monsters[currentMonsterIndex]
+    : runConfig?.monsters[currentMonsterIndex - 1];
 
   if (battleResult === "lose") {
     return (
@@ -71,6 +87,13 @@ function PostBattle() {
             </button>
           </div>
         </div>
+
+        {showLevelUp && (
+          <LevelUp
+            newLevel={pendingLevelUpLevel}
+            onConfirm={handleLevelUpConfirm}
+          />
+        )}
       </div>
     );
   }
@@ -148,6 +171,13 @@ function PostBattle() {
         </div>
 
       </div>
+
+      {showLevelUp && (
+        <LevelUp
+          newLevel={pendingLevelUpLevel}
+          onConfirm={handleLevelUpConfirm}
+        />
+      )}
     </div>
   );
 }

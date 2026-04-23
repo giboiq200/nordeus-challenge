@@ -10,18 +10,13 @@ const HERO_BASE_STATS = {
 
 const XP_TO_LEVEL_UP = 150;
 
-const LEVEL_UP_STATS = {
-  health: 20,
-  attack: 4,
-  defense: 3,
-  magic: 3,
-};
-
 export const useGameStore = create((set, get) => ({
   // --- Run state ---
   runConfig: null,
   currentMonsterIndex: 0,
   gameScreen: "mainMenu",
+  pendingLevelUp: false,
+  pendingLevelUpLevel: null,
 
   // --- Hero state ---
   hero: {
@@ -59,6 +54,8 @@ export const useGameStore = create((set, get) => ({
       gameScreen: "characterSelect",
       lastLearnedMove: null,
       battleResult: null,
+      pendingLevelUp: false,
+      pendingLevelUpLevel: null,
       hero: {
         id: "hero",
         name: "Knight",
@@ -94,20 +91,12 @@ export const useGameStore = create((set, get) => ({
 
     let newXp = hero.xp + xpGained;
     let newLevel = hero.level;
-    let newStats = {
-      max_hp: hero.max_hp,
-      attack: hero.attack,
-      defense: hero.defense,
-      magic: hero.magic,
-    };
+    let didLevelUp = false;
 
     if (newXp >= hero.xpToLevelUp) {
       newXp = newXp - hero.xpToLevelUp;
       newLevel += 1;
-      newStats.max_hp += LEVEL_UP_STATS.health;
-      newStats.attack += LEVEL_UP_STATS.attack;
-      newStats.defense += LEVEL_UP_STATS.defense;
-      newStats.magic += LEVEL_UP_STATS.magic;
+      didLevelUp = true;
     }
 
     const alreadyLearned = hero.learnedMoves.some((m) => m.id === learnedMove.id);
@@ -120,16 +109,15 @@ export const useGameStore = create((set, get) => ({
       battleResult: "win",
       currentMonsterIndex: currentMonsterIndex + 1,
       gameScreen: "postBattle",
+      pendingLevelUp: didLevelUp,
+      pendingLevelUpLevel: didLevelUp ? newLevel : null,
       hero: {
         ...hero,
         level: newLevel,
         xp: newXp,
         xpToLevelUp: XP_TO_LEVEL_UP,
-        current_hp: newStats.max_hp,
-        max_hp: newStats.max_hp,
-        attack: newStats.attack,
-        defense: newStats.defense,
-        magic: newStats.magic,
+        current_hp: hero.max_hp,
+        max_hp: hero.max_hp,
         learnedMoves: newLearnedMoves,
         active_effects: [],
       },
@@ -138,6 +126,24 @@ export const useGameStore = create((set, get) => ({
 
   onBattleLose: () => {
     set({ battleResult: "lose", gameScreen: "postBattle" });
+  },
+
+  applyLevelUpBonus: (bonus) => {
+    const { hero } = get();
+    const newMaxHp = hero.max_hp + (bonus.health || 0);
+
+    set({
+      pendingLevelUp: false,
+      pendingLevelUpLevel: null,
+      hero: {
+        ...hero,
+        max_hp: newMaxHp,
+        current_hp: newMaxHp,
+        attack: hero.attack + (bonus.attack || 0),
+        defense: hero.defense + (bonus.defense || 0),
+        magic: hero.magic + (bonus.magic || 0),
+      },
+    });
   },
 
   equipMove: (move) => {
