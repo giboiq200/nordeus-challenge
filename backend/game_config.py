@@ -83,12 +83,12 @@ MONSTERS = [
     ),
     MonsterConfig(
         id="witch", name="Witch", sprite="witch.png",
-        health=105, attack=7, defense=6, magic=20,
+        health=70, attack=7, defense=6, magic=20,
         moves=[SHADOW_BOLT, DRAIN_LIFE, CURSE, DARK_PACT]
     ),
     MonsterConfig(
         id="dragon", name="Dragon", sprite="dragon.png",
-        health=125, attack=20, defense=15, magic=22,
+        health=110, attack=20, defense=15, magic=22,
         moves=[FLAME_BREATH, CLAW_SWIPE, INTIMIDATE, DRAGON_SCALES]
     ),
 ]

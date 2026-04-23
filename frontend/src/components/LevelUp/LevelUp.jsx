@@ -7,8 +7,8 @@ const CHOICES = [
     icon: "❤",
     name: "Vitality",
     desc: "Increases maximum Health",
-    value: "+20 HP",
-    bonus: { health: 20 },
+    value: "+30 HP",
+    bonus: { health: 30 },
   },
   {
     key: "attack",
