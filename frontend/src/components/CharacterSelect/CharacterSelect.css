@@ -1,0 +1,282 @@
+.cs {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: Georgia, serif;
+  color: #eaeaea;
+  background: #060810;
+}
+
+/* ── Background ── */
+.cs__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, #0d0820 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, #0d0820 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, #1a0a2e 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Stars */
+.cs__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.2px 1.2px at 10% 10%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 20%, #fff 0%, transparent 100%),
+    radial-gradient(1.4px 1.4px at 40% 8%, #fff 0%, transparent 100%),
+    radial-gradient(0.8px 0.8px at 60% 15%, #fff 0%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 75% 5%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 18%, #fff 0%, transparent 100%),
+    radial-gradient(0.9px 0.9px at 15% 35%, #fff 0%, transparent 100%),
+    radial-gradient(1.1px 1.1px at 85% 30%, #fff 0%, transparent 100%);
+  opacity: 0.5;
+}
+
+/* ── Content ── */
+.cs__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 24px;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* ── Header ── */
+.cs__header {
+  position: relative;
+  text-align: center;
+  padding: 16px 60px;
+}
+
+.cs__subtitle {
+  font-size: 0.85rem;
+  color: #6a5a8a;
+  letter-spacing: 3px;
+  margin: 0 0 8px;
+}
+
+.cs__title {
+  font-size: 2.8rem;
+  color: #f4c542;
+  letter-spacing: 6px;
+  margin: 0;
+  text-shadow: 0 0 30px rgba(244, 197, 66, 0.2);
+}
+
+.cs__corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+.cs__corner.tl { top: 0; left: 0; border-top: 1px solid #3a2a5a; border-left: 1px solid #3a2a5a; }
+.cs__corner.tr { top: 0; right: 0; border-top: 1px solid #3a2a5a; border-right: 1px solid #3a2a5a; }
+
+/* ── Heroes grid ── */
+.cs__heroes {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ── Hero card ── */
+.cs__hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.cs__hero-card:hover {
+  transform: translateY(-8px);
+}
+
+.cs__hero-card.selected {
+  transform: translateY(-12px);
+}
+
+/* ── Pedestal ── */
+.cs__hero-pedestal {
+  position: relative;
+  width: 120px;
+  height: 140px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.cs__hero-glow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 20px;
+  border-radius: 50%;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cs__hero-card.selected .cs__hero-glow,
+.cs__hero-card:hover .cs__hero-glow {
+  opacity: 1;
+}
+
+.glow--hero1 { background: #4488ff; }
+.glow--hero2 { background: #44cc44; }
+.glow--hero3 { background: #44ccaa; }
+.glow--hero4 { background: #cc44aa; }
+.glow--hero5 { background: #f4c542; }
+
+/* Platform under hero */
+.cs__hero-pedestal::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 14px;
+  border-radius: 50%;
+  background: #1a1830;
+  border: 1px solid #2a2040;
+  transition: border-color 0.2s;
+}
+
+.cs__hero-card.selected .cs__hero-pedestal::after {
+  border-color: #f4c542;
+  background: #2a2010;
+}
+
+.cs__hero-sprite {
+  width: 100px;
+  height: 100px;
+  image-rendering: pixelated;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.8));
+  transition: filter 0.2s ease;
+}
+
+.cs__hero-card.selected .cs__hero-sprite {
+  filter: drop-shadow(0 0 12px rgba(244, 197, 66, 0.5));
+}
+
+/* ── Hero name ── */
+.cs__hero-name {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.cs__hero-card.selected .cs__hero-name {
+  color: #f4c542;
+}
+
+.cs__hero-card:hover .cs__hero-name {
+  color: #ccc;
+}
+
+/* ── Selected badge ── */
+.cs__hero-selected-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  background: #f4c542;
+  color: #1a0a2e;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Footer ── */
+.cs__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.cs__selected-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.cs__selected-label { color: #6a5a8a; }
+.cs__selected-name  { color: #f4c542; font-weight: bold; letter-spacing: 1px; }
+
+.cs__hint {
+  font-size: 0.85rem;
+  color: #3a2a5a;
+  font-style: italic;
+}
+
+.cs__buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.cs__btn-confirm {
+  background: #f4c542;
+  color: #1a0a2e;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 40px;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.2s ease;
+}
+
+.cs__btn-confirm:hover:not(:disabled) {
+  background: #ffd966;
+  transform: translateY(-2px);
+}
+
+.cs__btn-confirm:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cs__btn-back {
+  background: transparent;
+  color: #6a5a8a;
+  border: 1px solid #2a2040;
+  border-radius: 8px;
+  padding: 13px 24px;
+  font-family: Georgia, serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cs__btn-back:hover {
+  color: #9a8aba;
+  border-color: #4a3a6a;
+}

@@ -2,31 +2,32 @@ import { create } from "zustand";
 import { fetchRunConfig } from "../services/api";
 
 const HERO_BASE_STATS = {
-  health: 100,
-  attack: 15,
-  defense: 10,
-  magic: 10,
+  health: 120,
+  attack: 18,
+  defense: 12,
+  magic: 12,
 };
 
 const XP_TO_LEVEL_UP = 150;
 
 const LEVEL_UP_STATS = {
-  health: 15,
-  attack: 3,
-  defense: 2,
-  magic: 2,
+  health: 20,
+  attack: 4,
+  defense: 3,
+  magic: 3,
 };
 
 export const useGameStore = create((set, get) => ({
   // --- Run state ---
   runConfig: null,
   currentMonsterIndex: 0,
-  gameScreen: "mainMenu", // mainMenu | map | battle | postBattle
+  gameScreen: "mainMenu",
 
   // --- Hero state ---
   hero: {
     id: "hero",
     name: "Knight",
+    sprite: "hero5",
     level: 1,
     xp: 0,
     xpToLevelUp: XP_TO_LEVEL_UP,
@@ -35,34 +36,33 @@ export const useGameStore = create((set, get) => ({
     attack: HERO_BASE_STATS.attack,
     defense: HERO_BASE_STATS.defense,
     magic: HERO_BASE_STATS.magic,
-    equippedMoves: [],   // max 4 poteza
-    learnedMoves: [],    // svi nauceni potezi
+    equippedMoves: [],
+    learnedMoves: [],
     active_effects: [],
   },
 
   // --- Post battle ---
   lastLearnedMove: null,
-  battleResult: null, // "win" | "lose"
+  battleResult: null,
 
   // ============================================================
   // AKCIJE
   // ============================================================
 
-  // Pokretanje nove runde
   startNewRun: async () => {
     const config = await fetchRunConfig();
-
     const defaultMoves = config.hero_default_moves;
 
     set({
       runConfig: config,
       currentMonsterIndex: 0,
-      gameScreen: "map",
+      gameScreen: "characterSelect",
       lastLearnedMove: null,
       battleResult: null,
       hero: {
         id: "hero",
         name: "Knight",
+        sprite: "hero5",
         level: 1,
         xp: 0,
         xpToLevelUp: XP_TO_LEVEL_UP,
@@ -78,17 +78,20 @@ export const useGameStore = create((set, get) => ({
     });
   },
 
-  // Navigacija na ekrane
+  selectHero: (spriteKey, name) => {
+    set((state) => ({
+      hero: { ...state.hero, sprite: spriteKey, name },
+      gameScreen: "map",
+    }));
+  },
+
   goToScreen: (screen) => set({ gameScreen: screen }),
 
-  // Ulazak u borbu
   enterBattle: () => set({ gameScreen: "battle" }),
 
-  // Kad hero pobedi
   onBattleWin: (learnedMove, xpGained) => {
-    const { hero, currentMonsterIndex, runConfig } = get();
+    const { hero, currentMonsterIndex } = get();
 
-    // XP i level up
     let newXp = hero.xp + xpGained;
     let newLevel = hero.level;
     let newStats = {
@@ -107,7 +110,6 @@ export const useGameStore = create((set, get) => ({
       newStats.magic += LEVEL_UP_STATS.magic;
     }
 
-    // dodaj learned move ako vec nije naucen
     const alreadyLearned = hero.learnedMoves.some((m) => m.id === learnedMove.id);
     const newLearnedMoves = alreadyLearned
       ? hero.learnedMoves
@@ -123,7 +125,7 @@ export const useGameStore = create((set, get) => ({
         level: newLevel,
         xp: newXp,
         xpToLevelUp: XP_TO_LEVEL_UP,
-        current_hp: newStats.max_hp, // full HP nakon pobede
+        current_hp: newStats.max_hp,
         max_hp: newStats.max_hp,
         attack: newStats.attack,
         defense: newStats.defense,
@@ -134,18 +136,15 @@ export const useGameStore = create((set, get) => ({
     });
   },
 
-  // Kad hero izgubi
   onBattleLose: () => {
     set({ battleResult: "lose", gameScreen: "postBattle" });
   },
 
-  // Equip/unequip move
   equipMove: (move) => {
     const { hero } = get();
     const alreadyEquipped = hero.equippedMoves.some((m) => m.id === move.id);
 
     if (alreadyEquipped) {
-      // unequip
       set({
         hero: {
           ...hero,
@@ -153,7 +152,6 @@ export const useGameStore = create((set, get) => ({
         },
       });
     } else if (hero.equippedMoves.length < 4) {
-      // equip ako ima mesta
       set({
         hero: {
           ...hero,
@@ -163,7 +161,6 @@ export const useGameStore = create((set, get) => ({
     }
   },
 
-  // Trenutni monster
   getCurrentMonster: () => {
     const { runConfig, currentMonsterIndex } = get();
     if (!runConfig) return null;

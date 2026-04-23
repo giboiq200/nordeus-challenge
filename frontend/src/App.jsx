@@ -3,6 +3,7 @@ import MainMenu from "./components/MainMenu/MainMenu";
 import Map from "./components/Map/Map";
 import Battle from "./components/Battle/Battle";
 import PostBattle from "./components/PostBattle/PostBattle";
+import CharacterSelect from "./components/CharacterSelect/CharacterSelect";
 import "./App.css";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className="app">
       {gameScreen === "mainMenu" && <MainMenu />}
+      {gameScreen === "characterSelect" && <CharacterSelect />}
       {gameScreen === "map" && <Map />}
       {gameScreen === "battle" && <Battle />}
       {gameScreen === "postBattle" && <PostBattle />}

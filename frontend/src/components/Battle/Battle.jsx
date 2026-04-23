@@ -2,8 +2,13 @@ import { useState } from "react";
 import { useGameStore } from "../../store/gameStore";
 import { fetchMonsterMove, fetchBattleReward } from "../../services/api";
 import { BATTLE_BACKGROUNDS } from "../../assets/backgrounds/BattleBackgrounds";
-
-import knightSprite   from "../../assets/sprites/knight.png";
+//character selection
+import hero1Sprite from "../../assets/sprites/hero1.png";
+import hero2Sprite from "../../assets/sprites/hero2.png";
+import hero3Sprite from "../../assets/sprites/hero3.png";
+import hero4Sprite from "../../assets/sprites/hero4.png";
+import hero5Sprite from "../../assets/sprites/hero5.png";
+//enemies
 import goblinWarrior  from "../../assets/sprites/goblin_warrior.png";
 import goblinMage     from "../../assets/sprites/goblin_mage.png";
 import giantSpider    from "../../assets/sprites/giant_spider.png";
@@ -11,6 +16,14 @@ import witchSprite    from "../../assets/sprites/witch.png";
 import dragonSprite   from "../../assets/sprites/dragon.png";
 
 import "./Battle.css";
+
+const HERO_SPRITES = {
+  hero1: hero1Sprite,
+  hero2: hero2Sprite,
+  hero3: hero3Sprite,
+  hero4: hero4Sprite,
+  hero5: hero5Sprite,
+};
 
 const TURN_DELAY = 1000;
 
@@ -278,7 +291,7 @@ function Battle() {
             🟢 Knight — Lv.{hero.level}
           </div>
           <div className={`battle__sprite-wrap ${heroAnim}`}>
-            <img src={knightSprite} alt="Knight" className="battle__sprite-img"/>
+            <img src={HERO_SPRITES[hero.sprite] || hero5Sprite} alt={hero.name} className="battle__sprite-img"/>
             {floatingText && floatingText.isHero && (
               <div key={floatingText.key} className={`battle__float ${floatingText.text.startsWith("+") ? "heal" : "damage"}`}>
                 {floatingText.text}
