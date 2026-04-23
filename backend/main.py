@@ -11,7 +11,7 @@ app = FastAPI(title="RPG Battle API")
 # CORS - da React moze da komunicira sa backendom
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=["http://localhost:5173", "http://localhost:3000", "https://nordeus-challenge.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
