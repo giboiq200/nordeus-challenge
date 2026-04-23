@@ -71,6 +71,8 @@
   letter-spacing: 6px;
   margin: 0;
   text-shadow: 0 0 30px rgba(244, 197, 66, 0.2);
+  word-break: break-word;
+  line-height: 1.3;
 }
 
 .cs__corner {

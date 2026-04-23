@@ -82,13 +82,14 @@
   color: #d4a830;
   letter-spacing: 10px;
   margin: 0;
+  margin-top: 12px;
 }
 
 .main-menu__divider {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 10px auto;
+  margin: 16px auto;
   width: 280px;
 }
 
@@ -112,6 +113,7 @@
   color: #6a5a8a;
   letter-spacing: 2px;
   margin: 0;
+  margin-top: 10px;
 }
 
 /* ── Corner decorations ── */
