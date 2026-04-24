@@ -17,6 +17,7 @@ export const useGameStore = create((set, get) => ({
   gameScreen: "mainMenu",
   pendingLevelUp: false,
   pendingLevelUpLevel: null,
+  isLoading: false,
 
   // --- Hero state ---
   hero: {
@@ -45,34 +46,41 @@ export const useGameStore = create((set, get) => ({
   // ============================================================
 
   startNewRun: async () => {
-    const config = await fetchRunConfig();
-    const defaultMoves = config.hero_default_moves;
+    set({ isLoading: true });
+    try {
+      const config = await fetchRunConfig();
+      const defaultMoves = config.hero_default_moves;
 
-    set({
-      runConfig: config,
-      currentMonsterIndex: 0,
-      gameScreen: "characterSelect",
-      lastLearnedMove: null,
-      battleResult: null,
-      pendingLevelUp: false,
-      pendingLevelUpLevel: null,
-      hero: {
-        id: "hero",
-        name: "Knight",
-        sprite: "hero5",
-        level: 1,
-        xp: 0,
-        xpToLevelUp: XP_TO_LEVEL_UP,
-        current_hp: HERO_BASE_STATS.health,
-        max_hp: HERO_BASE_STATS.health,
-        attack: HERO_BASE_STATS.attack,
-        defense: HERO_BASE_STATS.defense,
-        magic: HERO_BASE_STATS.magic,
-        equippedMoves: defaultMoves,
-        learnedMoves: defaultMoves,
-        active_effects: [],
-      },
-    });
+      set({
+        isLoading: false,
+        runConfig: config,
+        currentMonsterIndex: 0,
+        gameScreen: "characterSelect",
+        lastLearnedMove: null,
+        battleResult: null,
+        pendingLevelUp: false,
+        pendingLevelUpLevel: null,
+        hero: {
+          id: "hero",
+          name: "Knight",
+          sprite: "hero5",
+          level: 1,
+          xp: 0,
+          xpToLevelUp: XP_TO_LEVEL_UP,
+          current_hp: HERO_BASE_STATS.health,
+          max_hp: HERO_BASE_STATS.health,
+          attack: HERO_BASE_STATS.attack,
+          defense: HERO_BASE_STATS.defense,
+          magic: HERO_BASE_STATS.magic,
+          equippedMoves: defaultMoves,
+          learnedMoves: defaultMoves,
+          active_effects: [],
+        },
+      });
+    } catch (e) {
+      set({ isLoading: false });
+      console.error("Failed to load run config", e);
+    }
   },
 
   selectHero: (spriteKey, name) => {
